@@ -16,8 +16,12 @@ mod evaluate;
 fn main() {
     println!("Hello, world!");
 
-    reader::read_source();
-    tokenize::tokenize();
-    parser::parse();
-    evaluate::evaluate();
+    let source = reader::read_source("somefile.lox");
+
+    let tokens = tokenize::tokenize(source);
+
+    let ast = parser::parse(tokens);
+
+    let out = evaluate::evaluate(ast);
 }
+ 
