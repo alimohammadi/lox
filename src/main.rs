@@ -27,6 +27,18 @@ fn run() -> Result<(), Error> {
     Ok(())
 }
 
+fn inverse(x: f64) -> Result<f64, String> {
+    if x == 0.0 {
+        Err("Divide by zero".to_string())
+    } else {
+        Ok(1.0/x)
+    }
+}
+
+fn f(x: f64) -> Result<f64, String> {
+    Ok(1.0 + inverse(x)?) // ? will propagate the error out if it fails
+}
+
 fn main() {
     println!("Hello, world!");
     match run() {
